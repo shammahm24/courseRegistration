@@ -1,0 +1,161 @@
+{%extends 'admin.html'%}
+{%block adminPage%}
+
+<script>
+  $('#datePicker').pickadate();
+
+  $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-title').text('New message to ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+  });
+
+  $('#deleteModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-title').text('New message to ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+  });
+  // Data Picker Initialization
+
+  </script>
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">New User</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal" data-whatever="@mdo">Delete</button>
+  <table class="table " style="width:50%">
+  <tr>
+    <th>ID</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Date of Birth</th>
+  </tr>
+  {% for row in data %}
+<tr>
+{% for d in row %}
+<td>{{d}}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+</table>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:#000;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form method='POST' action="/adminUsers">
+            <div class="form-group">
+
+              <input onclick="document.getElementById('major').disabled = false;document.getElementById('gpa').disabled = false;document.getElementById('advisor').disabled = false; document.getElementById('department').disabled = true;" type="radio" name="type" checked="checked" value="student">Student
+              <input onclick="document.getElementById('department').disabled = false; document.getElementById('advisor').disabled = true;document.getElementById('gpa').disabled = true;document.getElementById('major').disabled = true;" type="radio" name="type" checked="checked" value="advisor">Advisor
+              <input onclick="document.getElementById('major').disabled = true; document.getElementById('department').disabled = true; document.getElementById('gpa').disabled = true; document.getElementById('advisor').disabled = true;" type="radio" name="type" checked="checked" value="admin">Admin
+
+              <label for="recipient-name" class="col-form-label">Firstname:</label>
+              <input type="text" class="form-control" id="fname" name="fname">
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Lastname:</label>
+              <input type="text" class="form-control" id="lname" name="lname">
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Email:</label>
+              <input type="text" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group">
+              <div class="md-form" id="datePicker">
+                <label for="date-picker-example">Date of Birth (YYYY-MM-DD)</label>
+                <input type="text" class="form-control" id="dob" name="dob" placholder="01-05-2020">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Address:</label>
+              <input type="text" class="form-control" id="address" name="address">
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Phone:</label>
+              <input type="text" class="form-control" id="phone" name="phone">
+            </div>
+
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Major:</label>
+              <input type="text" class="form-control" id="major" disabled="true" name="major">
+            </div>
+
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">GPA:</label>
+              <input type="text" class="form-control" id="gpa" disabled="true" name="gpa">
+            </div>
+
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Advisor Department:</label>
+              <input type="text" class="form-control" id="advisor" disabled="true" name="advisor">
+            </div>
+
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Department:</label>
+              <input type="text" class="form-control" id="department" disabled="true" name="department">
+            </div>
+
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="nationality">
+                    <option selected>Nationality...</option>
+                    <option value="1">Domestic</option>
+                    <option value="0">International</option>
+            </select>
+
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="sex">
+                    <option selected>Sex...</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Add User</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:#000;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/adminUsersDelete" method="POST">
+            <div class="form-group">
+
+              <label for="recipient-name" class="col-form-label">User ID:</label>
+              <input type="text" class="form-control" id="user_id" name="user_id">
+            </div>
+
+          <button type="submit" class="btn btn-primary">Delete User</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{%endblock%}

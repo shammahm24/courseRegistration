@@ -1,0 +1,129 @@
+{%extends 'base.html'%}
+{%block page%}
+<script>
+  $('#advisor').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-title').text('New message to ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+  });
+
+  $('#advisor').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-title').text('New message to ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+  });
+
+  $('#student').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-title').text('New message to ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+  })
+
+    </script>
+
+  <h1>Welcome to Course Registration</h1>
+
+  <h2>Select an option</h2>
+  <button class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#admin" data-whatever="@mdo" >Admin</button>
+  </br>
+  </br>
+  <button class="btn btn-info btn-lg " type="button" data-toggle="modal" data-target="#advisor" data-whatever="@mdo">Advisor</button>
+  </br>
+  </br>
+  <button class="btn btn-default btn-lg" type="button" data-toggle="modal" data-target="#student" data-whatever="@mdo">Student</button>
+
+  <div class="modal fade" id="admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:#000;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Enter Admin ID</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{{ url_for('admin') }}" method="POST" >
+            <div class="form-group">
+
+              <label for="recipient-name" class="col-form-label">Admin ID:</label>
+              <input type="text" class="form-control" id="adminID" name="adminID">
+            </div>
+
+          <button type="submit" class="btn btn-primary">Go</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="advisor" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:#000;">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Enter Advisor ID</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="{{ url_for('advisor') }}" method="POST">
+              <div class="form-group">
+
+                <label for="recipient-name" class="col-form-label">Advisor ID:</label>
+                <input type="text" class="form-control" id="advisorID" name="advisorID">
+              </div>
+
+              <button type="submit" class="btn btn-primary" >Go</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="modal fade" id="student" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:#000;">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Enter Student ID</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="{{ url_for('student') }}" method="POST">
+                <div class="form-group">
+
+                  <label for="recipient-name" class="col-form-label">Student ID:</label>
+                  <input type="text" class="form-control" id="studentID" name="studentID">
+                </div>
+              <button type="submit" class="btn btn-primary">Go</button>
+
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+        </div>
+{%endblock%}

@@ -1,0 +1,56 @@
+{%extends 'student.html'%}
+{%block studentpage%}
+<h1>Choose courses to Register</h1>
+<form action="/studentCourseSearch" method='POST'>
+  <div class="form-group">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Find Course</label>
+    <div class="col-xs-2">
+      <input type="text" class="form-control" id="courseName" placeholder="Course Name" name="courseName">
+    </div>
+    <button class="btn btn-primary btn-lg" type="submit" onclick="window.location.href='/admin'">Search</button>
+      <button class="btn btn-info btn-lg" type="button" onclick="window.location.href='/studentregister'">All</button>
+  </div>
+</form>
+
+<form>
+<div class="form-row form-inline">
+    <input type="text" class="form-control" id="sectionID" name="ID" value="Section ID" disabled>
+
+    <input type="text" class="form-control" id="courseName" name="Name" value="Course Name" disabled>
+
+    <input type="text" class="form-control" id="departmentName" name="Name" value="Section Number" disabled>
+
+    <input type="text" class="form-control" id="departmentName" name="Name" value="Location" disabled>
+
+    <input type="text" class="form-control" id="departmentName" name="Name" value="Time" disabled>
+
+    <input type="text" class="form-control" id="days" name="sectionID" value="Days" disabled>
+    <button type="submit" class="btn btn-primary " disabled>Register</button>
+
+
+</div>
+
+
+</form>
+{% for row in data %}
+<form method='POST' action="/studentregister">
+<div class="form-row form-inline">
+    <input type="text" class="form-control" id="sectionID" name="sectionID" value="{{row[0]}}" disabled>
+    <input type="hidden" class="form-control" id="sectionID" name="sectionID" value="{{row[0]}}" >
+    <input type="text" class="form-control" id="courseName" name="Name" value="{{row[1]}}" disabled>
+    <input type="hidden" class="form-control" id="courseName" name="Name" value="{{row[1]}}">
+    <input type="text" class="form-control" id="departmentName" name="Name" value="{{row[2]}}" disabled>
+    <input type="hidden" class="form-control" id="departmentName" name="Name" value="{{row[2]}}" >
+    <input type="text" class="form-control" id="departmentName" name="Name" value="{{row[3]}}" disabled>
+    <input type="hidden" class="form-control" id="departmentName" name="Name" value="{{row[3]}}" >
+    <input type="text" class="form-control" id="departmentName" name="Name" value="{{row[4]}}" disabled>
+    <input type="hidden" class="form-control" id="departmentName" name="Name" value="{{row[4]}}" >
+    <input type="text" class="form-control" id="days" name="days" value="{{row[5]}}" disabled>
+    <input type="hidden" class="form-control" id="days" name="days" value="{{row[5]}}" >
+    <button type="submit" class="btn btn-primary ">Register</button>
+</div>
+
+
+</form>
+{% endfor %}
+{%endblock%}
