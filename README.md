@@ -1,6 +1,6 @@
 # courseRegistration
 A course registration system for college. It has three types of users: admin, advisor and student.
-The web application is built on a pyhton flask server and communicates with a mySQL database
+The web application is built on a python flask server and communicates with a MySQL database
 ### Admin
 Can add new users to the database both students and faculty as well as add new courses to the system.
 Only admin can introduce new entities to the system.
